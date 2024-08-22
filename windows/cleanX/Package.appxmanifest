@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="75c0595f-40df-4dfe-a4f0-269ad05c5160"
+    Name="1e44ad52-ec25-4382-8323-cc2dc5fe0c99"
     Publisher="CN=tillm"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="75c0595f-40df-4dfe-a4f0-269ad05c5160" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="1e44ad52-ec25-4382-8323-cc2dc5fe0c99" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>cleanX</DisplayName>
