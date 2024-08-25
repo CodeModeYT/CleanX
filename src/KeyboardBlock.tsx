@@ -59,6 +59,7 @@ export default class KeyboardBlock extends Component<{}, KeyboardBlockState> {
                     style={styles.image}
                 />
                 <Text style={styles.countdown}>{this.state.timeLeft}s</Text>
+                <Text style={styles.infomsg}>Blocking keyboard input</Text>
                 <TouchableOpacity style={styles.button} onPress={this.stopTimer}>
                     <Text style={styles.buttonText}>Stop early</Text>
                 </TouchableOpacity>
@@ -102,6 +103,12 @@ const styles = StyleSheet.create({
     countdown: {
         fontSize: 100,
         fontWeight: 'bold',
-        margin: 150,
+        marginTop: 100,
+    },
+    infomsg: {
+        fontSize: 20,
+        marginTop: 0,
+        textAlign: 'center',
+        marginBottom: 100,
     }
 });
