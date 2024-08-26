@@ -1,57 +1,65 @@
-import React, { Component } from 'react'
-import RNPickerSelect from 'react-native-picker-select';
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import {
-    Platform,
     Text,
     View,
     TouchableOpacity,
     StyleSheet,
     Image
-} from 'react-native'
+} from 'react-native';
+import { RootStackParamList } from './types';
 
-export default class Home extends Component {
-    render() {
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+
+const Home = () => {
+    const navigation = useNavigation<HomeScreenNavigationProp>();
+
+    const navigateToKeyboardBlock = () => {
+        navigation.navigate('KeyboardBlock');
+    };
+
     return (
-            <View style={styles.container}>
-                <Image 
-                    source={require('../public/logo_full_glow.png')}
-                    style={styles.image}
-                />
-                <View style={styles.inlineContainer}>
-                    <Text style={styles.inlineText}>Block keyboard input</Text>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Start!</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.inlineContainer}>
-                    <Text style={styles.inlineText}>Block trackpad input</Text>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Start!</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.inlineContainer}>
-                    <Text style={styles.inlineText}>Block touch input</Text>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Start!</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.inlineContainer}>
-                    <Text style={styles.inlineHighlightText}>Block ALL inputs</Text>
-                    <TouchableOpacity style={styles.highlightButton}>
-                        <Text style={styles.buttonText}>Start!</Text>
-                    </TouchableOpacity>
-                </View>
-                <Text style={styles.copyright}>©2024 Tillmann Menzer. All rights reserved.</Text>
+        <View style={styles.container}>
+            <Image 
+                source={require('../public/logo_full_glow.png')}
+                style={styles.image}
+            />
+            <View style={styles.inlineContainer}>
+                <Text style={styles.inlineText}>Block keyboard input</Text>
+                <TouchableOpacity style={styles.button} onPress={navigateToKeyboardBlock}>
+                    <Text style={styles.buttonText}>Start!</Text>
+                </TouchableOpacity>
             </View>
-        )
-    }
-}
+            <View style={styles.inlineContainer}>
+                <Text style={styles.inlineText}>Block trackpad input</Text>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText}>Start!</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.inlineContainer}>
+                <Text style={styles.inlineText}>Block touch input</Text>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText}>Start!</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.inlineContainer}>
+                <Text style={styles.inlineHighlightText}>Block ALL inputs</Text>
+                <TouchableOpacity style={styles.highlightButton}>
+                    <Text style={styles.buttonText}>Start!</Text>
+                </TouchableOpacity>
+            </View>
+            <Text style={styles.copyright}>©2024 Tillmann Menzer. All rights reserved.</Text>
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgb(32, 32, 32)',
     },
     inlineContainer: {
         flexDirection: 'row',
@@ -83,34 +91,17 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
     },
-    btn: {
-        width: '30%',
-        borderWidth: 1,
-        borderRadius: 4,
-        height: 20,
-    },
-    infoText: {
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
-    btnText: {
-        fontSize: 16,
-        textAlign: 'center',
-        lineHeight: 30,
-    },
     image: {
         width: 320,
         height: 130,
-        position: 'absolute',
-        top: 100,
-        left: '50%',
-        marginLeft: -150, // half the width of the image
+        marginBottom: 30,
     },
     copyright: {
         fontSize: 12,
         color: 'grey',
-        bottom: 20,
-        position: 'absolute'
+        position: 'absolute',
+        bottom: 10, 
     }
-    }
-)
+});
+
+export default Home;

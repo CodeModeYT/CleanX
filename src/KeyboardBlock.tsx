@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import {
     Text,
     View,
@@ -6,68 +8,61 @@ import {
     StyleSheet,
     Image
 } from 'react-native';
+import { RootStackParamList } from './types';
 
-interface KeyboardBlockState {
-    timeLeft: number;
-    timerId: NodeJS.Timeout | null;
-}
+type KeyboardBlockNavigationProp = StackNavigationProp<RootStackParamList, 'KeyboardBlock'>;
 
-export default class KeyboardBlock extends Component<{}, KeyboardBlockState> {
-    constructor(props: {}) {
-        super(props);
-        this.state = {
-            timeLeft: 30,
-            timerId: null,
+const KeyboardBlock = () => {
+    const navigation = useNavigation<KeyboardBlockNavigationProp>();
+    const [timeLeft, setTimeLeft] = useState(30);
+    const [shouldNavigate, setShouldNavigate] = useState(false);
+
+    useEffect(() => {
+        const id = setInterval(() => {
+            setTimeLeft(prevTime => {
+                if (prevTime <= 1) {
+                    clearInterval(id);
+                    setShouldNavigate(true); // Trigger navigation after timer completes
+                    return 0;
+                }
+                return prevTime - 1;
+            });
+        }, 1000);
+
+        return () => {
+            clearInterval(id);
         };
-    }
+    }, []);
 
-    componentDidMount() {
-        const timerId = setInterval(this.countdown, 1000);
-        this.setState({ timerId });
-    }
-
-    componentWillUnmount() {
-        if (this.state.timerId) {
-            clearInterval(this.state.timerId);
+    useEffect(() => {
+        if (shouldNavigate) {
+            navigation.navigate('Home');
         }
-    }
+    }, [shouldNavigate, navigation]);
 
-    countdown = () => {
-        if (this.state.timeLeft <= 0) {
-            if (this.state.timerId) {
-                clearInterval(this.state.timerId);
-            }
-        } else {
-            this.setState((prevState) => ({
-                timeLeft: prevState.timeLeft - 1
-            }));
-        }
-    }
+    const stopTimer = () => {
+        setTimeLeft(0);
+        setShouldNavigate(true);
+    };
 
-    stopTimer = () => {
-        if (this.state.timerId) {
-            clearInterval(this.state.timerId);
-        }
-        this.setState({ timeLeft: 0 });
-    }
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <Image 
-                    source={require('../public/logo_icon.png')}
-                    style={styles.image}
-                />
-                <Text style={styles.countdown}>{this.state.timeLeft}s</Text>
-                <Text style={styles.infomsg}>Blocking keyboard input</Text>
-                <TouchableOpacity style={styles.button} onPress={this.stopTimer}>
-                    <Text style={styles.buttonText}>Stop early</Text>
-                </TouchableOpacity>
-                <Text style={styles.copyright}>©2024 Tillmann Menzer. All rights reserved.</Text>
-            </View>
-        )
-    }
-}
+    return (
+        <View style={styles.container}>
+            <Image 
+                source={require('../public/logo_icon.png')}
+                style={styles.image}
+            />
+            <Text style={styles.countdown}>{timeLeft}s</Text>
+            <Text style={styles.infomsg}>Blocking keyboard input</Text>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={stopTimer}
+            >
+                <Text style={styles.buttonText}>Stop early</Text>
+            </TouchableOpacity>
+            <Text style={styles.copyright}>©2024 Tillmann Menzer. All rights reserved.</Text>
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -112,3 +107,5 @@ const styles = StyleSheet.create({
         marginBottom: 100,
     }
 });
+
+export default KeyboardBlock;
