@@ -8,16 +8,28 @@ import {
     StyleSheet,
     Image
 } from 'react-native';
-import { RootStackParamList } from './types';
+import { RootStackParamList } from './ts/types';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 const Home = () => {
     const navigation = useNavigation<HomeScreenNavigationProp>();
 
-    const navigateToKeyboardBlock = () => {
+    const navigateKeyboardBlock = () => {
         navigation.navigate('KeyboardBlock');
     };
+
+    const navigateTrackpadBlock = () => {
+        navigation.navigate('TrackpadBlock');
+    };
+
+    const navigateTouchBlock = () => {
+        navigation.navigate('TouchBlock');
+    };
+
+    const navigateBlockAll = () => {
+        navigation.navigate('BlockAll');
+    }
 
     return (
         <View style={styles.container}>
@@ -27,25 +39,25 @@ const Home = () => {
             />
             <View style={styles.inlineContainer}>
                 <Text style={styles.inlineText}>Block keyboard input</Text>
-                <TouchableOpacity style={styles.button} onPress={navigateToKeyboardBlock}>
+                <TouchableOpacity style={styles.button} onPress={navigateKeyboardBlock}>
                     <Text style={styles.buttonText}>Start!</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.inlineContainer}>
                 <Text style={styles.inlineText}>Block trackpad input</Text>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={navigateTrackpadBlock}>
                     <Text style={styles.buttonText}>Start!</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.inlineContainer}>
                 <Text style={styles.inlineText}>Block touch input</Text>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={navigateTouchBlock}>
                     <Text style={styles.buttonText}>Start!</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.inlineContainer}>
                 <Text style={styles.inlineHighlightText}>Block ALL inputs</Text>
-                <TouchableOpacity style={styles.highlightButton}>
+                <TouchableOpacity style={styles.highlightButton} onPress={navigateBlockAll}>
                     <Text style={styles.buttonText}>Start!</Text>
                 </TouchableOpacity>
             </View>

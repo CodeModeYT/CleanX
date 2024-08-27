@@ -10,10 +10,10 @@ import {
 } from 'react-native';
 import { RootStackParamList } from './ts/types';
 
-type TouchBlockNavigationProp = StackNavigationProp<RootStackParamList, 'TouchBlock'>;
+type BlockAllNavigationProp = StackNavigationProp<RootStackParamList, 'TrackpadBlock'>;
 
-const TouchBlock = () => {
-    const navigation = useNavigation<TouchBlockNavigationProp>();
+const BlockAll = () => {
+    const navigation = useNavigation<BlockAllNavigationProp>();
     const [timeLeft, setTimeLeft] = useState(30);
     const [shouldNavigate, setShouldNavigate] = useState(false);
 
@@ -52,13 +52,8 @@ const TouchBlock = () => {
                 style={styles.image}
             />
             <Text style={styles.countdown}>{timeLeft}s</Text>
-            <Text style={styles.blockmsg}>Blocking touch input</Text>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={stopTimer}
-            >
-                <Text style={styles.buttonText}>Stop early</Text>
-            </TouchableOpacity>
+            <Text style={styles.blockmsg}>Blocking ALL inputs</Text>
+            <Text style={styles.infomsg}>The inputs will get enabled again as soon as the countdown above reaches 0.</Text>
             <Text style={styles.copyright}>©2024 Tillmann Menzer. All rights reserved.</Text>
         </View>
     );
@@ -99,13 +94,20 @@ const styles = StyleSheet.create({
         fontSize: 100,
         fontWeight: 'bold',
         marginTop: 100,
+        marginBottom: 50,
     },
     blockmsg: {
         fontSize: 20,
+        marginTop: 0,
+        textAlign: 'center',
+    },
+    infomsg: {
+        fontSize: 15,
+        color: 'grey',
         marginTop: 0,
         textAlign: 'center',
         marginBottom: 100,
     }
 });
 
-export default TouchBlock;
+export default BlockAll;

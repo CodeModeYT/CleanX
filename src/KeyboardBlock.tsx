@@ -8,7 +8,7 @@ import {
     StyleSheet,
     Image
 } from 'react-native';
-import { RootStackParamList } from './types';
+import { RootStackParamList } from './ts/types';
 
 type KeyboardBlockNavigationProp = StackNavigationProp<RootStackParamList, 'KeyboardBlock'>;
 
@@ -52,7 +52,7 @@ const KeyboardBlock = () => {
                 style={styles.image}
             />
             <Text style={styles.countdown}>{timeLeft}s</Text>
-            <Text style={styles.infomsg}>Blocking keyboard input</Text>
+            <Text style={styles.blockmsg}>Blocking keyboard input</Text>
             <TouchableOpacity
                 style={styles.button}
                 onPress={stopTimer}
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 100,
     },
-    infomsg: {
+    blockmsg: {
         fontSize: 20,
         marginTop: 0,
         textAlign: 'center',
