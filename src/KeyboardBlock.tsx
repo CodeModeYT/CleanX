@@ -9,6 +9,7 @@ import {
     Image
 } from 'react-native';
 import { RootStackParamList } from './ts/types';
+import { blockInput, unblockInput } from 'react-native-keyboard-blocker';
 
 type KeyboardBlockNavigationProp = StackNavigationProp<RootStackParamList, 'KeyboardBlock'>;
 
@@ -18,11 +19,15 @@ const KeyboardBlock = () => {
     const [shouldNavigate, setShouldNavigate] = useState(false);
 
     useEffect(() => {
+        // Block keyboard input when the countdown starts
+        blockInput();
+
         const id = setInterval(() => {
             setTimeLeft(prevTime => {
                 if (prevTime <= 1) {
                     clearInterval(id);
                     setShouldNavigate(true); // Trigger navigation after timer completes
+                    unblockInput(); // Unblock keyboard input
                     return 0;
                 }
                 return prevTime - 1;
@@ -31,6 +36,7 @@ const KeyboardBlock = () => {
 
         return () => {
             clearInterval(id);
+            unblockInput(); // Ensure keyboard input is unblocked if component unmounts
         };
     }, []);
 
@@ -43,7 +49,9 @@ const KeyboardBlock = () => {
     const stopTimer = () => {
         setTimeLeft(0);
         setShouldNavigate(true);
+        unblockInput(); // Unblock keyboard input when timer is stopped early
     };
+
 
     return (
         <View style={styles.container}>

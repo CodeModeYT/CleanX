@@ -1,0 +1,9 @@
+namespace MyApp
+{
+    [default_interface]
+    runtimeclass KeyboardBlocker
+    {
+        static void BlockKeyboard();
+        static void UnblockKeyboard();
+    }
+}
