@@ -1,3 +1,6 @@
+# For fixing commit errors:
+.vs/CleanX/v17/Browse.VC.db
+
 # OSX
 #
 .DS_Store

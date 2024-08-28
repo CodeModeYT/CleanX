@@ -22,7 +22,7 @@ const KeyboardBlock = () => {
             setTimeLeft(prevTime => {
                 if (prevTime <= 1) {
                     clearInterval(id);
-                    setShouldNavigate(true); // Trigger navigation after timer completes
+                    setShouldNavigate(true);
                     return 0;
                 }
                 return prevTime - 1;
