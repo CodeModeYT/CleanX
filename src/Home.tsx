@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
@@ -6,7 +6,8 @@ import {
     View,
     TouchableOpacity,
     StyleSheet,
-    Image
+    Image,
+    TextInput
 } from 'react-native';
 import { RootStackParamList } from './ts/types';
 
@@ -31,6 +32,33 @@ const Home = () => {
         navigation.navigate('BlockAll');
     }
 
+    // State variables for each input
+    const [keyboardBlockTime, setKeyboardBlockTime] = useState('30');
+    const [trackpadBlockTime, setTrackpadBlockTime] = useState('30');
+    const [touchBlockTime, setTouchBlockTime] = useState('30');
+    const [blockAllTime, setBlockAllTime] = useState('30');
+
+    // Handlers for each input
+    const handleChangeKeyboardBlockTime = (time: string) => {
+        const numericTime = time.replace(/[^0-9]/g, '');
+        setKeyboardBlockTime(numericTime);
+    };
+
+    const handleChangeTrackpadBlockTime = (time: string) => {
+        const numericTime = time.replace(/[^0-9]/g, '');
+        setTrackpadBlockTime(numericTime);
+    };
+
+    const handleChangeTouchBlockTime = (time: string) => {
+        const numericTime = time.replace(/[^0-9]/g, '');
+        setTouchBlockTime(numericTime);
+    };
+
+    const handleChangeBlockAllTime = (time: string) => {
+        const numericTime = time.replace(/[^0-9]/g, '');
+        setBlockAllTime(numericTime);
+    };
+
     return (
         <View style={styles.container}>
             <Image 
@@ -38,25 +66,61 @@ const Home = () => {
                 style={styles.image}
             />
             <View style={styles.inlineContainer}>
-                <Text style={styles.inlineText}>Block keyboard input</Text>
+                <Text style={styles.inlineText}>Block keyboard input for</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="time"
+                    value={keyboardBlockTime}
+                    onChangeText={handleChangeKeyboardBlockTime}
+                    keyboardType="numeric"
+                    maxLength={3}
+                />
+                <Text style={styles.inlineText}>s</Text>
                 <TouchableOpacity style={styles.button} onPress={navigateKeyboardBlock}>
                     <Text style={styles.buttonText}>Start!</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.inlineContainer}>
-                <Text style={styles.inlineText}>Block trackpad input</Text>
+                <Text style={styles.inlineText}>Block trackpad input for</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="time"
+                    value={trackpadBlockTime}
+                    onChangeText={handleChangeTrackpadBlockTime}
+                    keyboardType="numeric"
+                    maxLength={3}
+                />
+                <Text style={styles.inlineText}>s</Text>
                 <TouchableOpacity style={styles.button} onPress={navigateTrackpadBlock}>
                     <Text style={styles.buttonText}>Start!</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.inlineContainer}>
-                <Text style={styles.inlineText}>Block touch input</Text>
+                <Text style={styles.inlineText}>Block touch input for</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="time"
+                    value={touchBlockTime}
+                    onChangeText={handleChangeTouchBlockTime}
+                    keyboardType="numeric"
+                    maxLength={3}
+                />
+                <Text style={styles.inlineText}>s</Text>
                 <TouchableOpacity style={styles.button} onPress={navigateTouchBlock}>
                     <Text style={styles.buttonText}>Start!</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.inlineContainer}>
-                <Text style={styles.inlineHighlightText}>Block ALL inputs</Text>
+                <Text style={styles.inlineHighlightText}>Block ALL inputs for</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="time"
+                    value={blockAllTime}
+                    onChangeText={handleChangeBlockAllTime}
+                    keyboardType="numeric"
+                    maxLength={3}
+                />
+                <Text style={styles.inlineText}>s</Text>
                 <TouchableOpacity style={styles.highlightButton} onPress={navigateBlockAll}>
                     <Text style={styles.buttonText}>Start!</Text>
                 </TouchableOpacity>
@@ -107,6 +171,14 @@ const styles = StyleSheet.create({
         width: 320,
         height: 130,
         marginBottom: 30,
+    },
+    input: {
+        backgroundColor: 'transparent',
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        borderRadius: 5,
+        width: 70,
+        marginRight: 5,
     },
     copyright: {
         fontSize: 12,
