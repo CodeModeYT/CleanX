@@ -65,6 +65,7 @@ const Home = () => {
                 source={require('../public/logo_full_glow.png')}
                 style={styles.image}
             />
+            {/* Keyboard */}
             <View style={styles.inlineContainer}>
                 <Text style={styles.inlineText}>Block keyboard input for</Text>
                 <TextInput
@@ -80,6 +81,7 @@ const Home = () => {
                     <Text style={styles.buttonText}>Start!</Text>
                 </TouchableOpacity>
             </View>
+            {/* Trackpad / Mouse */}
             <View style={styles.inlineContainer}>
                 <Text style={styles.inlineText}>Block trackpad input for</Text>
                 <TextInput
@@ -95,6 +97,7 @@ const Home = () => {
                     <Text style={styles.buttonText}>Start!</Text>
                 </TouchableOpacity>
             </View>
+            {/* Touch */}
             <View style={styles.inlineContainer}>
                 <Text style={styles.inlineText}>Block touch input for</Text>
                 <TextInput
@@ -110,7 +113,8 @@ const Home = () => {
                     <Text style={styles.buttonText}>Start!</Text>
                 </TouchableOpacity>
             </View>
-            <View style={styles.inlineContainer}>
+            {/* All */}
+            <View style={styles.inlineContainerHighlighted}>
                 <Text style={styles.inlineHighlightText}>Block ALL inputs for</Text>
                 <TextInput
                     style={styles.input}
@@ -138,6 +142,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(32, 32, 32)',
     },
     inlineContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 15,
+    },
+    inlineContainerHighlighted: {
+        marginTop: 20,
+        borderTopWidth: 1,
+        paddingTop: 20,
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 15,
