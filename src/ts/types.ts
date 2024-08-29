@@ -1,7 +1,7 @@
 export type RootStackParamList = {
     Home: undefined;
-    KeyboardBlock: undefined;
-    TouchBlock: undefined;
-    TrackpadBlock: undefined;
-    BlockAll: undefined;
+    KeyboardBlock: { time: number };
+    TrackpadBlock: { time: number };
+    TouchBlock: { time: number };
+    BlockAll: { time: number };
 };

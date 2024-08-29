@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import { RouteProp, NavigationProp } from '@react-navigation/native';
 import {
     Text,
     View,
@@ -8,14 +8,17 @@ import {
     StyleSheet,
     Image
 } from 'react-native';
-import { RootStackParamList } from './ts/types';
+import { RootStackParamList } from './ts/types'; 
 
-type KeyboardBlockNavigationProp = StackNavigationProp<RootStackParamList, 'KeyboardBlock'>;
+type KeyboardBlockRouteProp = RouteProp<RootStackParamList, 'KeyboardBlock'>;
+type KeyboardBlockNavigationProp = NavigationProp<RootStackParamList, 'KeyboardBlock'>;
 
-const KeyboardBlock = () => {
+const KeyboardBlock: React.FC = () => {
+    const route = useRoute<KeyboardBlockRouteProp>();
     const navigation = useNavigation<KeyboardBlockNavigationProp>();
-    const [timeLeft, setTimeLeft] = useState(30);
-    const [shouldNavigate, setShouldNavigate] = useState(false);
+
+    const [timeLeft, setTimeLeft] = useState<number>(route.params?.time || 30);
+    const [shouldNavigate, setShouldNavigate] = useState<boolean>(false);
 
     useEffect(() => {
         const id = setInterval(() => {

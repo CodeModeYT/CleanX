@@ -17,46 +17,43 @@ const Home = () => {
     const navigation = useNavigation<HomeScreenNavigationProp>();
 
     const navigateKeyboardBlock = () => {
-        navigation.navigate('KeyboardBlock');
+        navigation.navigate('KeyboardBlock', { time: parseInt(keyboardBlockTime, 10) });
     };
 
     const navigateTrackpadBlock = () => {
-        navigation.navigate('TrackpadBlock');
+        navigation.navigate('TrackpadBlock', { time: parseInt(trackpadBlockTime, 10) });
     };
 
     const navigateTouchBlock = () => {
-        navigation.navigate('TouchBlock');
+        navigation.navigate('TouchBlock', { time: parseInt(touchBlockTime, 10) });
     };
 
     const navigateBlockAll = () => {
-        navigation.navigate('BlockAll');
+        navigation.navigate('BlockAll', { time: parseInt(blockAllTime, 10) });
     }
 
     // State variables for each input
-    const [keyboardBlockTime, setKeyboardBlockTime] = useState('30');
-    const [trackpadBlockTime, setTrackpadBlockTime] = useState('30');
-    const [touchBlockTime, setTouchBlockTime] = useState('30');
-    const [blockAllTime, setBlockAllTime] = useState('30');
+    const [keyboardBlockTime, setKeyboardBlockTime] = useState<string>('30');
+    const [trackpadBlockTime, setTrackpadBlockTime] = useState<string>('30');
+    const [touchBlockTime, setTouchBlockTime] = useState<string>('30');
+    const [blockAllTime, setBlockAllTime] = useState<string>('30');
+
 
     // Handlers for each input
     const handleChangeKeyboardBlockTime = (time: string) => {
-        const numericTime = time.replace(/[^0-9]/g, '');
-        setKeyboardBlockTime(numericTime);
+        setKeyboardBlockTime(time.replace(/[^0-9]/g, ''));
     };
 
     const handleChangeTrackpadBlockTime = (time: string) => {
-        const numericTime = time.replace(/[^0-9]/g, '');
-        setTrackpadBlockTime(numericTime);
+        setTrackpadBlockTime(time.replace(/[^0-9]/g, ''));
     };
 
     const handleChangeTouchBlockTime = (time: string) => {
-        const numericTime = time.replace(/[^0-9]/g, '');
-        setTouchBlockTime(numericTime);
+        setTouchBlockTime(time.replace(/[^0-9]/g, ''));
     };
 
     const handleChangeBlockAllTime = (time: string) => {
-        const numericTime = time.replace(/[^0-9]/g, '');
-        setBlockAllTime(numericTime);
+        setBlockAllTime(time.replace(/[^0-9]/g, ''));
     };
 
     return (
