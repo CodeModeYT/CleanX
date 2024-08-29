@@ -6,6 +6,7 @@ import KeyboardBlock from './src/KeyboardBlock';
 import TrackpadBlock from './src/TrackpadBlock';
 import TouchBlock from './src/TouchBlock';
 import BlockAll from './src/BlockAll';
+//import { BlockProvider } from '@context/BlockContext';
 
 const Stack = createNativeStackNavigator();
 
