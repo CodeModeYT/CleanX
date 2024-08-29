@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
     Text,
@@ -11,18 +12,21 @@ import {
 import { RootStackParamList } from './ts/types';
 
 type BlockAllNavigationProp = StackNavigationProp<RootStackParamList, 'TrackpadBlock'>;
+type BlockAllRouteProp = RouteProp<RootStackParamList, 'TrackpadBlock'>;
 
 const BlockAll = () => {
     const navigation = useNavigation<BlockAllNavigationProp>();
-    const [timeLeft, setTimeLeft] = useState(30);
-    const [shouldNavigate, setShouldNavigate] = useState(false);
+    const route = useRoute<BlockAllRouteProp>();
+
+    const [timeLeft, setTimeLeft] = useState<number>(route.params?.time || 30);
+    const [shouldNavigate, setShouldNavigate] = useState<boolean>(false);
 
     useEffect(() => {
         const id = setInterval(() => {
             setTimeLeft(prevTime => {
                 if (prevTime <= 1) {
                     clearInterval(id);
-                    setShouldNavigate(true); // Trigger navigation after timer completes
+                    setShouldNavigate(true);
                     return 0;
                 }
                 return prevTime - 1;

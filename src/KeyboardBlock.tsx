@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRoute, useNavigation } from '@react-navigation/native';
-import { RouteProp, NavigationProp } from '@react-navigation/native';
+import { RouteProp} from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import {
     Text,
     View,
@@ -11,7 +12,7 @@ import {
 import { RootStackParamList } from './ts/types'; 
 
 type KeyboardBlockRouteProp = RouteProp<RootStackParamList, 'KeyboardBlock'>;
-type KeyboardBlockNavigationProp = NavigationProp<RootStackParamList, 'KeyboardBlock'>;
+type KeyboardBlockNavigationProp = StackNavigationProp<RootStackParamList, 'KeyboardBlock'>;
 
 const KeyboardBlock: React.FC = () => {
     const route = useRoute<KeyboardBlockRouteProp>();
