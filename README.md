@@ -1,3 +1,8 @@
+<p align="center">
+    <img src="public/logo_full_glow.png" height="100px" style="margin-right: 20px" alt="CleanX logo"/>
+</p>
+
+
 # CleanX
 Easily clean your Laptop or PC without causing unwanted keyboard- /trackpad- or touch input.
 
