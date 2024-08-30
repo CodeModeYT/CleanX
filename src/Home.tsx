@@ -10,6 +10,8 @@ import {
     TextInput
 } from 'react-native';
 import { RootStackParamList } from './ts/types';
+import Footer from './components/Footer';
+import { Dimensions } from 'react-native';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -126,10 +128,16 @@ const Home = () => {
                     <Text style={styles.buttonText}>Start!</Text>
                 </TouchableOpacity>
             </View>
-            <Text style={styles.copyright}>©2024 Tillmann Menzer. All rights reserved.</Text>
+            <Footer />
         </View>
     );
 };
+
+
+// Style variables:
+const { height: screenHeight } = Dimensions.get('window');
+const marginTopPercentage = 0.25;
+const marginTop = screenHeight * marginTopPercentage;
 
 const styles = StyleSheet.create({
     container: {
@@ -180,6 +188,7 @@ const styles = StyleSheet.create({
         width: 320,
         height: 130,
         marginBottom: 30,
+        marginTop: marginTop,
     },
     input: {
         backgroundColor: 'transparent',
@@ -189,12 +198,6 @@ const styles = StyleSheet.create({
         width: 70,
         marginRight: 5,
     },
-    copyright: {
-        fontSize: 12,
-        color: 'grey',
-        position: 'absolute',
-        bottom: 10, 
-    }
 });
 
 export default Home;

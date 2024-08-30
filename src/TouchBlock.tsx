@@ -10,6 +10,7 @@ import {
     Image
 } from 'react-native';
 import { RootStackParamList } from './ts/types';
+import Footer from './components/Footer';
 
 type TouchBlockNavigationProp = StackNavigationProp<RootStackParamList, 'TouchBlock'>;
 type TouchBlockRouteProp = RouteProp<RootStackParamList, 'TouchBlock'>;
@@ -63,7 +64,7 @@ const TouchBlock: React.FC = () => {
             >
                 <Text style={styles.buttonText}>Stop early</Text>
             </TouchableOpacity>
-            <Text style={styles.copyright}>©2024 Tillmann Menzer. All rights reserved.</Text>
+            <Footer />
         </View>
     );
 };
@@ -93,16 +94,10 @@ const styles = StyleSheet.create({
         left: '50%',
         marginLeft: -50, // half the width of the image
     },
-    copyright: {
-        fontSize: 12,
-        color: 'grey',
-        bottom: 20,
-        position: 'absolute'
-    },
     countdown: {
         fontSize: 100,
         fontWeight: 'bold',
-        marginTop: 100,
+        marginTop: 300,
     },
     blockmsg: {
         fontSize: 20,

@@ -5,11 +5,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import {
     Text,
     View,
-    TouchableOpacity,
     StyleSheet,
     Image
 } from 'react-native';
 import { RootStackParamList } from './ts/types';
+import Footer from './components/Footer';
 
 type BlockAllNavigationProp = StackNavigationProp<RootStackParamList, 'TrackpadBlock'>;
 type BlockAllRouteProp = RouteProp<RootStackParamList, 'TrackpadBlock'>;
@@ -58,7 +58,7 @@ const BlockAll = () => {
             <Text style={styles.countdown}>{timeLeft}s</Text>
             <Text style={styles.blockmsg}>Blocking ALL inputs</Text>
             <Text style={styles.infomsg}>The inputs will get enabled again as soon as the countdown above reaches 0.</Text>
-            <Text style={styles.copyright}>©2024 Tillmann Menzer. All rights reserved.</Text>
+            <Footer />
         </View>
     );
 };
@@ -88,16 +88,10 @@ const styles = StyleSheet.create({
         left: '50%',
         marginLeft: -50, // half the width of the image
     },
-    copyright: {
-        fontSize: 12,
-        color: 'grey',
-        bottom: 20,
-        position: 'absolute'
-    },
     countdown: {
         fontSize: 100,
         fontWeight: 'bold',
-        marginTop: 100,
+        marginTop: 300,
         marginBottom: 50,
     },
     blockmsg: {
